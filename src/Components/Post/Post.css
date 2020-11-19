@@ -1,0 +1,8 @@
+.Post {
+  background-color: rgba(245, 245, 245, 0.432);
+  border-radius: 25px;
+  margin-bottom: 10px;
+  padding: 0px 10px;
+  display: flex;
+  flex-direction: column;
+}

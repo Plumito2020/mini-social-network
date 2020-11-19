@@ -1,0 +1,33 @@
+.AddPost {
+  border: 1px solid grey;
+  flex-direction: column;
+  /* margin-left: 10px;
+  margin-right: 10px; */
+  margin-bottom: 5px;
+  height: 100px;
+  padding: 5px 5px;
+  resize: none;
+}
+
+.Button {
+  padding: 10px 10px;
+  background: none;
+  border: none;
+  font-size: 15px;
+  align-self: flex-end;
+  color: gray;
+}
+
+.Button:hover {
+  color: black;
+}
+
+.NewPost {
+  box-shadow: 1px 1px 7px rgb(214, 214, 214);
+  /* height: 800px; */
+  margin: 10px 20px;
+  border-radius: 25px;
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,8 @@
+.Chat {
+  flex: 1;
+  box-shadow: 1px 1px 5px rgb(214, 214, 214);
+  height: 800px;
+  margin: 10px 10px;
+  border-radius: 25px;
+  padding: 10px 10px;
+}
