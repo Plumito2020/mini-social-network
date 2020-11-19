@@ -1,0 +1,28 @@
+.Profile {
+  flex: 1;
+  box-shadow: 1px 1px 7px rgb(214, 214, 214);
+  height: fit-content;
+  margin: 10px 10px;
+  border-radius: 25px;
+  padding: 20px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Profile h5 {
+  text-align: center;
+  margin: 0px;
+  margin-bottom: 15px;
+}
+
+.Profile button {
+  padding: 10px 10px;
+  background: gray;
+  border: none;
+  font-size: 15px;
+  color: white;
+}
+
+.Profile button:hover {
+  background: black;
+}

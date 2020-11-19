@@ -12,6 +12,10 @@ class NewPost extends Component {
     this.setState({ postContent: event.target.value });
   };
 
+  clear = () => {
+    this.setState({ postContent: "" });
+  };
+
   addPost = () => console.log(this.state.postContent);
   render() {
     return (
@@ -24,7 +28,10 @@ class NewPost extends Component {
         ></textarea>
         <button
           className={classes.Button}
-          onClick={() => this.props.addPost(this.state.postContent)}
+          onClick={() => {
+            this.props.addPost(this.state.postContent);
+            this.clear();
+          }}
         >
           POST
         </button>

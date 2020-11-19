@@ -1,5 +1,3 @@
-import post from "../Components/Post/Post";
-
 const initialState = {
   posts: [
     {

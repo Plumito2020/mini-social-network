@@ -1,0 +1,16 @@
+.CustomInput {
+  height: 20px;
+  padding: 10px 10px;
+}
+
+.InputContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.InputContainer p {
+  margin: 0px;
+  color: tomato;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
