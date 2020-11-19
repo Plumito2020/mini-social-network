@@ -5,9 +5,7 @@ const post = (props) => {
   return (
     <div className={classes.Post}>
       <h6>Azziz Zakaria</h6>
-      <p>
-        Balalalalaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-      </p>
+      <p>{props.body}</p>
     </div>
   );
 };
