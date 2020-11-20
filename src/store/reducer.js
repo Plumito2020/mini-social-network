@@ -5,6 +5,7 @@ const initialState = {
       content: "1st post ",
     },
   ],
+  infos: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -14,6 +15,17 @@ const reducer = (state = initialState, action) => {
     });
     const newPosts = [...deepCopy, { id: action.id, content: action.data }];
     return { posts: newPosts };
+  }
+  if (action.type === "SAVE_INFOS") {
+    return {
+      ...state,
+      infos: {
+        name: action.data.name,
+        adress: action.data.adress,
+        phone: action.data.phone,
+        mail: action.data.mail,
+      },
+    };
   }
   return state;
 };

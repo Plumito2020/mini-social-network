@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import classes from "./Profile.css";
 import CustomInput from "../../../Components/CustomInput/CustomInput";
+import ProfileInfos from "../../../Components/ProfileInfos/ProfileInfos";
 
 class Profile extends Component {
   state = {
@@ -18,7 +20,7 @@ class Profile extends Component {
         error: null,
       },
       adress: {
-        placeholder: "Adress",
+        placeholder: "Address",
         value: "",
         validator: (val) => {
           if (val.length === 0) {
@@ -39,15 +41,12 @@ class Profile extends Component {
         },
         error: null,
       },
-      Gender: {
-        placeholder: "Gender",
+      Mail: {
+        placeholder: "Mail",
         value: "",
         validator: (val) => {
           if (val.length === 0) {
             return "Vide";
-          }
-          if (val !== "male") {
-            return "You're not a male , fuck off !";
           }
           return null;
         },
@@ -55,6 +54,7 @@ class Profile extends Component {
       },
     },
     isValid: null,
+    infos: null,
   };
 
   onChangeHandler = (event, fieldId) => {
@@ -65,20 +65,31 @@ class Profile extends Component {
     this.setState({ fields: copiedState });
   };
 
-  saveForm = () => {
+  buildObject = () => {
+    const obj = {
+      name: "",
+      adress: "",
+      phoneNumber: "",
+      Mail: "",
+    };
+    for (const key in this.state.fields) {
+      obj[key] = this.state.fields[key].value;
+    }
+    this.setState({ infos: obj }, () => console.log(this.state.infos));
+  };
+
+  saveForm = (callBack) => {
     // Testing if there is any error in order to save the form
     let formValidity = true;
     for (const key in this.state.fields) {
-      console.log(this.state.fields[key].error);
       if (this.state.fields[key].error !== null) {
         formValidity = false;
       }
     }
 
-    this.setState({ isValid: formValidity }, () =>
-      console.log(this.state.isValid)
-    );
+    this.setState({ isValid: formValidity }, () => callBack());
   };
+
   validateForm = (callBack) => {
     // Updating the errors in state
     const copiedState = { ...this.state.fields };
@@ -90,7 +101,7 @@ class Profile extends Component {
       updatedFormElement.error = customError;
       copiedState[key] = updatedFormElement;
     }
-    this.setState({ fields: copiedState }, () => callBack());
+    this.setState({ fields: copiedState }, () => callBack(this.buildObject));
   };
 
   render() {
@@ -109,14 +120,52 @@ class Profile extends Component {
         error={input.config.error}
       />
     ));
-    return (
-      <div className={classes.Profile}>
-        <h5>Fill in your informations</h5>
-        {inputs}
-        <button onClick={() => this.validateForm(this.saveForm)}>Submit</button>
-      </div>
-    );
+
+    let whatToReturn;
+    if (this.state.infos !== null && this.state.isValid) {
+      whatToReturn = (
+        <ProfileInfos
+          name={this.state.infos.name}
+          adress={this.state.infos.adress}
+          number={this.state.infos.phoneNumber}
+          mail={this.state.infos.mail}
+        />
+      );
+    } else {
+      whatToReturn = (
+        <div>
+          <h5>Fill in your informations</h5>
+          {inputs}
+          <button onClick={() => this.validateForm(this.saveForm)}>
+            Submit
+          </button>
+        </div>
+      );
+    }
+    return <div className={classes.Profile}>{whatToReturn}</div>;
   }
 }
 
-export default Profile;
+// const mapStateToProps = state => {
+//   return {
+//       ctr: state.ctr.counter,
+//       storedResults: state.res.results
+//   }
+// };
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    saveInfos: (infos) =>
+      dispatch({
+        type: "SAVE_INFOS",
+        data: {
+          name: infos.name,
+          adress: infos.adress,
+          phone: infos.phone,
+          mail: infos.mail,
+        },
+      }),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Profile);

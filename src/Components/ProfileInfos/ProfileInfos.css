@@ -1,0 +1,13 @@
+.ProfileInfos p {
+  font-size: 10px;
+}
+
+.ProfileInfos h6 {
+  margin: 0px;
+}
+
+.ProfileInfos h4 {
+  text-align: center;
+  margin: 0px;
+  margin-bottom: 10px;
+}
